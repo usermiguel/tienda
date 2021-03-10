@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/product_model.dart';
+import 'package:flutter_application_1/src/providers/productos_providers.dart';
 import 'package:flutter_application_1/src/utils/utils.dart' as utils;
 
 class ProductPage extends StatefulWidget {
@@ -9,9 +10,16 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   final formKey = GlobalKey<FormState>();
+  final productoProvider = new ProductosProvider();
+
   ProductoModel producto = new ProductoModel();
+
   @override
   Widget build(BuildContext context) {
+    final ProductoModel prodData = ModalRoute.of(context).settings.arguments;
+    if (prodData != null) {
+      producto = prodData;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Producto'),
@@ -100,6 +108,12 @@ class _ProductPageState extends State<ProductPage> {
     print(producto.valor);
     print(producto.titulo);
     print(producto.disponible);
+
+    if (producto.id == null) {
+      productoProvider.crearProducto(producto);
+    } else {
+      productoProvider.editarProducto(producto);
+    }
   }
 
   _crearDisponible() {
