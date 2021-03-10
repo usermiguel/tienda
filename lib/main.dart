@@ -4,6 +4,7 @@ import 'package:flutter_application_1/src/bloc/provider.dart';
 import 'package:flutter_application_1/src/pages/home_page.dart';
 import 'package:flutter_application_1/src/pages/login_page.dart';
 import 'package:flutter_application_1/src/pages/producto_page.dart';
+import 'package:flutter_application_1/src/pages/registro_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'login',
       routes: {
         'login': (BuildContext context) => LoginPage(),
+        'registro': (BuildContext context) => RegistroPage(),
         'home': (BuildContext context) => HomePage(),
         'producto': (BuildContext context) => ProductPage(),
       },
