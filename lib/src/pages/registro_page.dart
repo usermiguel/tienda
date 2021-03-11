@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/bloc/provider.dart';
 import 'package:flutter_application_1/src/providers/usuario_provider.dart';
+import 'package:flutter_application_1/src/utils/utils.dart';
 
 class RegistroPage extends StatelessWidget {
   final usuarioProvider = new UsuarioProvider();
@@ -128,52 +129,57 @@ class RegistroPage extends StatelessWidget {
     );
   }
 
-  _register(LoginBloc bloc, BuildContext context) {
-    usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
-    //Navigator.pushReplacementNamed(context, 'home');
+  _register(LoginBloc bloc, BuildContext context) async {
+    final info = await usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
+    if (info['ok']) {
+      Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      mostrarAlerta(context, info['mensaje']);
+    }
   }
+  //Navigator.pushReplacementNamed(context, 'home');
+}
 
-  Widget _crearFondo(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+Widget _crearFondo(BuildContext context) {
+  final size = MediaQuery.of(context).size;
 
-    final fondoModaro = Container(
-      height: size.height * 0.4,
-      width: double.infinity,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-        colors: <Color>[Colors.orangeAccent, Colors.yellowAccent],
-      )),
-    );
+  final fondoModaro = Container(
+    height: size.height * 0.4,
+    width: double.infinity,
+    decoration: BoxDecoration(
+        gradient: LinearGradient(
+      colors: <Color>[Colors.orangeAccent, Colors.yellowAccent],
+    )),
+  );
 
-    final circulo = Container(
-      width: 100.0,
-      height: 100.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100.0),
-        color: Colors.black12,
-      ),
-    );
+  final circulo = Container(
+    width: 100.0,
+    height: 100.0,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(100.0),
+      color: Colors.black12,
+    ),
+  );
 
-    return Stack(
-      children: <Widget>[
-        fondoModaro,
-        Positioned(top: 90.0, left: 30.0, child: circulo),
-        Positioned(top: -40.0, right: -30.0, child: circulo),
-        Positioned(bottom: -50.0, right: -10.0, child: circulo),
-        Positioned(bottom: 120.0, right: 20.0, child: circulo),
-        Positioned(bottom: -50.0, left: -20.0, child: circulo),
-        Container(
-          padding: EdgeInsets.only(top: 80.0),
-          child: Column(
-            children: <Widget>[
-              Icon(Icons.person, color: Colors.white, size: 100.0),
-              SizedBox(height: 10.0, width: double.infinity),
-              Text('Mejor Llame a Saul',
-                  style: TextStyle(color: Colors.white, fontSize: 25.0))
-            ],
-          ),
-        )
-      ],
-    );
-  }
+  return Stack(
+    children: <Widget>[
+      fondoModaro,
+      Positioned(top: 90.0, left: 30.0, child: circulo),
+      Positioned(top: -40.0, right: -30.0, child: circulo),
+      Positioned(bottom: -50.0, right: -10.0, child: circulo),
+      Positioned(bottom: 120.0, right: 20.0, child: circulo),
+      Positioned(bottom: -50.0, left: -20.0, child: circulo),
+      Container(
+        padding: EdgeInsets.only(top: 80.0),
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.person, color: Colors.white, size: 100.0),
+            SizedBox(height: 10.0, width: double.infinity),
+            Text('Mejor Llame a Saul',
+                style: TextStyle(color: Colors.white, fontSize: 25.0))
+          ],
+        ),
+      )
+    ],
+  );
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_application_1/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
 import 'dart:io';
@@ -8,6 +9,7 @@ import 'package:flutter_application_1/src/models/product_model.dart';
 
 class ProductosProvider {
   final String _url = 'https://flutter-da4fe-default-rtdb.firebaseio.com/';
+  //final _prefs = new PreferenciasUsuario();
 
   Future<bool> crearProducto(ProductoModel producto) async {
     final url = '$_url/productos.json';
