@@ -163,16 +163,14 @@ class LoginPage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         fondoModaro,
-        Positioned(top: 90.0, left: 30.0, child: circulo),
-        Positioned(top: -40.0, right: -30.0, child: circulo),
-        Positioned(bottom: -50.0, right: -10.0, child: circulo),
-        Positioned(bottom: 120.0, right: 20.0, child: circulo),
-        Positioned(bottom: -50.0, left: -20.0, child: circulo),
         Container(
           padding: EdgeInsets.only(top: 80.0),
           child: Column(
             children: <Widget>[
-              Icon(Icons.person, color: Colors.white, size: 100.0),
+              Image(
+                  image: NetworkImage(
+                      'https://images.vexels.com/media/users/3/127094/isolated/preview/e1acd672f42b3d2453075624236f19f1-pan-de-panader-iacute-a-logo-svg-by-vexels.png')),
+              //Icon(Icons.person, color: Colors.white, size: 100.0),
               SizedBox(height: 10.0, width: double.infinity),
               Text('Mejor Llame a Saul',
                   style: TextStyle(color: Colors.white, fontSize: 25.0))

@@ -52,7 +52,7 @@ class _ProductPageState extends State<ProductPage> {
                 _mostrarFoto(),
                 _crearNombre(),
                 _crearPrecio(),
-                _crearDisponible(),
+                //_crearDisponible(),
                 _crearBoton()
               ],
             ),
@@ -108,7 +108,7 @@ class _ProductPageState extends State<ProductPage> {
   Widget _crearBoton() {
     return RaisedButton.icon(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      color: Colors.deepPurple,
+      color: Colors.deepOrangeAccent,
       textColor: Colors.white,
       label: Text('Guardar'),
       icon: Icon(Icons.save),
@@ -126,7 +126,8 @@ class _ProductPageState extends State<ProductPage> {
     });
 
     if (foto != null) {
-      producto.fotoUrl = await productoProvider.subirImagen(foto);
+      producto.fotoUrl = await productoProvider.subirImagen(foto, producto);
+      return;
     }
 
     if (producto.id == null) {

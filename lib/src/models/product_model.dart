@@ -15,6 +15,7 @@ class ProductoModel {
   double valor;
   bool disponible;
   String fotoUrl;
+  String fotoId;
 
   ProductoModel({
     this.id,
@@ -22,16 +23,17 @@ class ProductoModel {
     this.valor = 0.0,
     this.disponible = true,
     this.fotoUrl,
+    this.fotoId,
   });
 
   factory ProductoModel.fromJson(Map<String, dynamic> json) =>
       new ProductoModel(
-        id: json["id"],
-        titulo: json["titulo"],
-        valor: json["valor"],
-        disponible: json["disponible"],
-        fotoUrl: json["fotoUrl"],
-      );
+          id: json["_id"],
+          titulo: json["name"],
+          valor: json["price"].toDouble(),
+          disponible: true,
+          fotoUrl: json["imageURL"],
+          fotoId: json["public_id"]);
 
   Map<String, dynamic> toJson() => {
         // "id"         : id,
@@ -39,5 +41,6 @@ class ProductoModel {
         "valor": valor,
         "disponible": disponible,
         "fotoUrl": fotoUrl,
+        "fotoId": fotoId
       };
 }
